@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
-import 'package:fluttertestapp/ui/StartScreen.dart';
-import 'package:fluttertestapp/ui/story.dart';
+import 'package:fluttertestapp/ui/start_screen.dart';
 import 'package:fluttertestapp/utils/navigater_helper.dart';
+import 'package:fluttertestapp/utils/utils.dart';
 
 class LastScreen extends StatefulWidget {
   @override
@@ -11,11 +11,51 @@ class LastScreen extends StatefulWidget {
 
 class _LastScreenState extends State<LastScreen> {
   final TextEditingController _answerController =
-  TextEditingController(text: "");
+      TextEditingController(text: "");
 
-  Color hexToColor(String code) {
-    return new Color(int.parse(code.substring(1, 7), radix: 16) + 0xFF000000);
+  //region QuestionBtn
+  Widget _questionBtn() {
+    return RaisedButton(
+      elevation: 0.0,
+      padding:
+          EdgeInsets.only(left: 30.0, right: 30.0, top: 13.0, bottom: 13.0),
+      color: Utils.hexToColor("#c9e9f6"),
+      shape: new RoundedRectangleBorder(
+        borderRadius: new BorderRadius.circular(10.0),
+      ),
+      onPressed: () {
+        ///NavigationHelper.push(context, Questions());
+      },
+      child: Text(
+        'Questions',
+        style: TextStyle(
+            fontSize: 18.0, fontWeight: FontWeight.w600, color: Colors.black),
+      ),
+    );
   }
+  //endregion
+
+  //region StoryButton
+  Widget _storyButton() {
+    return RaisedButton(
+      elevation: 4.0,
+      padding:
+          EdgeInsets.only(left: 50.0, right: 50.0, top: 13.0, bottom: 13.0),
+      color: Utils.hexToColor("#43b3e0"),
+      shape: new RoundedRectangleBorder(
+        borderRadius: new BorderRadius.circular(10.0),
+      ),
+      onPressed: () {
+        ///NavigationHelper.push(context, Questions());
+      },
+      child: Text(
+        'Story',
+        style: TextStyle(
+            fontSize: 18.0, fontWeight: FontWeight.w600, color: Colors.black),
+      ),
+    );
+  }
+  //endregion
 
   @override
   Widget build(BuildContext context) {
@@ -40,102 +80,85 @@ class _LastScreenState extends State<LastScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
-                  ///
+                  ///top margin
                   SizedBox(
-                    height: 40,
+                    height: 30,
                   ),
-                  ///
+
+                  ///top buttons..
                   Row(
                       mainAxisSize: MainAxisSize.max,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        RaisedButton(
-                          elevation: 0.0,
-                          padding: EdgeInsets.only(
-                              left: 20.0, right: 20.0, top: 13.0, bottom: 13.0),
-                          color: Color.fromARGB(999, 201, 233, 246),
-                          shape: new RoundedRectangleBorder(
-                            borderRadius: new BorderRadius.circular(10.0),
-                          ),
-                          onPressed: () {
-                            ///NavigationHelper.push(context, Questions());
-                          },
-                          child: Text(
-                            'Questions',
-                            style: TextStyle(fontSize: 20.0, color: Colors.black),
-                          ),
-                        ),
+                        _questionBtn(),
                         Padding(
-                          padding: EdgeInsets.only(right: 50.0),
+                          padding: EdgeInsets.only(right: 30.0),
                         ),
-                        RaisedButton(
-                          elevation: 2.0,
-                          padding: EdgeInsets.only(
-                              left: 40.0, right: 40.0, top: 13.0, bottom: 13.0),
-                          color: Color.fromARGB(999, 67, 179, 224),
-                          shape: new RoundedRectangleBorder(
-                            borderRadius: new BorderRadius.circular(10.0),
-                          ),
-                          onPressed: () {
-                            ///NavigationHelper.push(context, Questions());
-                          },
-                          child: Text(
-                            'Story',
-                            style: TextStyle(fontSize: 20.0, color: Colors.black),
-                          ),
-                        ),
+                        _storyButton(),
                       ]),
 
-
-                  SizedBox(height: 70.0,),
+                  SizedBox(
+                    height: 37.0,
+                  ),
 
                   Stack(
                     alignment: Alignment.topLeft,
                     children: <Widget>[
                       Container(
-                        margin: EdgeInsets.only(top: 30, right: 20.0, left: 20.0),
+                        margin:
+                            EdgeInsets.only(top: 30, right: 30.0, left: 30.0),
                         padding: EdgeInsets.all(20.0),
                         width: queryData.size.width,
                         decoration: BoxDecoration(
                             shape: BoxShape.rectangle,
                             color: Color.fromARGB(999, 67, 179, 224),
                             borderRadius:
-                            new BorderRadius.all(Radius.circular(20.0))),
+                                new BorderRadius.all(Radius.circular(28.0))),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: <Widget>[
                             SizedBox(
-                              height: 30,
+                              height: 40,
                             ),
                             Text(
-                              "An emotion i am currently \nfeeling is... \n\nA recent action that triggered this emotion is... ",
+                              "An emotion i am currently \nfeeling is...... \n\nA recent action that triggered this emotion is...... ",
                               style: TextStyle(
-                                fontSize: 24,
-                              ),
+                                  fontSize: 20, fontWeight: FontWeight.w600),
                             ),
-                            SizedBox(height: 200.0,),
-                            ///
+                            SizedBox(
+                              height: 270.0,
+                            ),
+
+                            ///center finish button
                             Align(
                               alignment: Alignment.center,
                               child: RaisedButton(
                                 elevation: 0.0,
                                 padding: EdgeInsets.only(
-                                    left: 40.0, right: 40.0, top: 13.0, bottom: 13.0),
-                                color: Color.fromARGB(999, 201, 233, 246),
+                                    left: 50.0,
+                                    right: 50.0,
+                                    top: 13.0,
+                                    bottom: 13.0),
+                                color: Utils.hexToColor("#c9e9f6"),
                                 shape: new RoundedRectangleBorder(
                                   borderRadius: new BorderRadius.circular(7.0),
                                 ),
                                 onPressed: () {
                                   NavigationHelper.push(context, StartScreen());
                                 },
-                                child: Text('Finish', style: TextStyle(fontSize: 20.0, color: Colors.black),),
+                                child: Text(
+                                  'Finish',
+                                  style: TextStyle(
+                                      fontSize: 20.0,
+                                      fontWeight: FontWeight.w700,
+                                      color: Colors.black),
+                                ),
                               ),
                             ),
                           ],
                         ),
-
                       ),
                       Align(
                         alignment: Alignment.topLeft,
@@ -145,13 +168,12 @@ class _LastScreenState extends State<LastScreen> {
                             width: 100,
                             height: 80,
                             image:
-                            AssetImage('assets/images/flutter_logo_v2.png'),
+                                AssetImage('assets/images/flutter_logo_v2.png'),
                           ),
                         ),
                       )
                     ],
                   ),
-
                 ],
               ),
             ),
@@ -160,5 +182,4 @@ class _LastScreenState extends State<LastScreen> {
       ),
     );
   }
-
 }

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fluttertestapp/ui/StartScreen.dart';
+import 'package:fluttertestapp/ui/start_screen.dart';
 
 var routes = <String, WidgetBuilder>{
   "/start": (BuildContext context) => StartScreen(),
